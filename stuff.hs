@@ -70,3 +70,12 @@ cilinderSurface r h =
 -- let bindings cannot be used in guards
 calcBmisLet :: (RealFloat a) => [(a, a)] -> [a]  
 calcBmisLet xs = [bmi | (w, h) <- xs, let bmi = w / h ^ 2, bmi >= 25]  
+
+-- returns the maximum from a list
+getMaximum :: (Ord a) => [a] -> a
+getMaximum [] = error "empty list"
+getMaximum [x] = x
+getMaximum (x:xs)
+    | x > maxTail = x
+    | otherwise = maxTail
+    where maxTail = getMaximum xs 
