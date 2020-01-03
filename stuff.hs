@@ -79,3 +79,43 @@ getMaximum (x:xs)
     | x > maxTail = x
     | otherwise = maxTail
     where maxTail = getMaximum xs 
+
+{-
+replicate takes an Int and some element and returns a list that has several repetitions of the same element. For instance, replicate 3 5 returns [5,5,5]
+replicate x 0 times -> []
+replicate x 1 times -> [x]
+replicate x 2 times -> x : replicate x 1
+-}
+replicate' :: (Ord a, Num a) => a -> x -> [x]
+replicate' 0 x = error "can't replicate something 0 times"
+replicate' 1 x = [x]
+replicate' q x = x : replicate' (q - 1) x
+
+-- textbook solution
+replicate'' :: (Num i, Ord i) => i -> a -> [a]  
+replicate'' n x  
+    | n <= 0    = []  
+    | otherwise = x:replicate' (n-1) x  
+
+-- take num list[] -> takes first num elements from list
+take' :: (Num n, Ord n) => n -> [x] -> [x]
+take' n _    
+    | n <= 0    = []
+take' _ []      = [] 
+take' n (x:xs)  = x : take' (n - 1) xs
+
+-- reverse a list
+reverse' :: [x] -> [x]
+reverse' []     = []
+reverse' (x:xs) = reverse' xs ++ [x]
+
+{-
+zip takes two lists and zips them together. zip [1,2,3] [2,3] returns [(1,2),(2,3)], 
+because it truncates the longer list to match the length of the shorter one. 
+How about if we zip something with an empty list? Well, we get an empty list back then. So there's our edge condition. 
+However, zip takes two lists as parameters, so there are actually two edge conditions.
+-}
+zip' :: [x] -> [y] -> [(x,y)]
+zip' [] _   = []
+zip' _ []   = []
+zip' (x:xs) (y:ys) = (x,y) : zip' xs ys
