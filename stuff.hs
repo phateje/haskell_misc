@@ -119,3 +119,16 @@ zip' :: [x] -> [y] -> [(x,y)]
 zip' [] _   = []
 zip' _ []   = []
 zip' (x:xs) (y:ys) = (x,y) : zip' xs ys
+
+-- omg, so elegance
+quicksort' :: (Ord a) => [a] -> [a]
+quicksort' [] = []
+quicksort' [x] = [x] -- not necessary, but should prevent unneccessary calls to sort a list of 1
+quicksort' (x:xs) = 
+    let 
+        smaller = [a | a <- xs, a < x]
+        bigger = [a | a <- xs, a >= x]
+    in quicksort' smaller ++ [x] ++ quicksort' bigger
+
+-- pretty cool implementations of merge sort: https://stackoverflow.com/questions/37082925/haskell-merge-sort
+ 
