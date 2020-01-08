@@ -132,3 +132,12 @@ quicksort' (x:xs) =
 
 -- pretty cool implementations of merge sort: https://stackoverflow.com/questions/37082925/haskell-merge-sort
  
+-- produce collatz chain
+collatzChain :: (Integral a) => a -> [a]
+collatzChain 1  = [1]
+collatzChain x
+    | odd x     = x : collatzChain (x * 3 + 1)
+    | otherwise = x : collatzChain (div x 2)
+
+-- [head ret | ret <- map collatzChain [1..100], length ret > 15] to find a list of all numbers whose resulting chain is > 15
+
