@@ -141,3 +141,16 @@ collatzChain x
 
 -- [head ret | ret <- map collatzChain [1..100], length ret > 15] to find a list of all numbers whose resulting chain is > 15
 
+-- foldl takes a method (here a lambda) and reduces a list to a single value
+sumFoldl :: (Num a) => [a] -> a
+sumFoldl xs = foldl (\ acc x -> acc + x) 0 xs
+
+sumFoldl' :: (Num a) => [a] -> a
+sumFoldl' = foldl (+) 0
+
+-- why can't I swap False and ys as arguments? hmm.. probably need to use foldr somehow?
+elem' :: (Eq a) => a -> [a] -> Bool  
+elem' y ys = foldl (\acc x -> if x == y then True else acc) False ys
+
+map' :: (a -> b) -> [a] -> [b] -- f = (a->b), xs = [a]
+map' f xs = foldr (\a acc -> f a : acc) [] xs -- xs the array to map our lambda to, [] the accumulator
