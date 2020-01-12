@@ -154,3 +154,7 @@ elem' y ys = foldl (\acc x -> if x == y then True else acc) False ys
 
 map' :: (a -> b) -> [a] -> [b] -- f = (a->b), xs = [a]
 map' f xs = foldr (\a acc -> f a : acc) [] xs -- xs the array to map our lambda to, [] the accumulator
+
+-- more explanation on how to use . and $ https://stackoverflow.com/questions/940382/what-is-the-difference-between-dot-and-dollar-sign
+oddSquareSum :: Integer  
+oddSquareSum = sum . takeWhile (<10000) . filter odd . map (^2) $ [1..]  
