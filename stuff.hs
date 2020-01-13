@@ -48,7 +48,7 @@ tellList :: (Show a) => [a] -> String
 tellList [] = "The list is empty"  
 tellList (x:[]) = "The list has one element: " ++ show x  
 tellList (x:y:[]) = "The list has two elements: " ++ show x ++ " and " ++ show y  
-tellList (x:y:_) = "This list is long. The first two elements are: " ++ show x ++ " and " ++ show y  
+tellList (x:y:z) = "This list is long. The first two elements are: " ++ show x ++ " and " ++ show y  ++ " and trails with " ++ show z
 
 -- @ is used as an alias to represent the pattern that comes after it
 capital :: String -> String  
